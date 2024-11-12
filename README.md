@@ -2,9 +2,11 @@
 
 A simple yet powerful To-Do List application built with Flutter featuring dark/light themes and local notifications.
 
-![App Screenshots](https://i.imgur.com/auVPsVe.png)
-![Dark Mode](https://i.imgur.com/tKwMi25.png)
-![Task List](https://i.imgur.com/kUg6FaE.png)
+<p float="left">
+  <img src="https://i.imgur.com/auVPsVe.png" width="250" />
+  <img src="https://i.imgur.com/tKwMi25.png" width="250" />
+  <img src="https://i.imgur.com/kUg6FaE.png" width="250" />
+</p>
 
 ## ✨ Features
 
