@@ -54,7 +54,7 @@ A simple yet powerful To-Do List application built with Flutter featuring dark/l
 1. Clone the repository
 
 ```bash
-git clone https://github.com/username/todo_list_app.git
+git clone https://github.com/ellfarnaz/TodoList-Flutter.git
 ```
 
 2. Navigate to project directory
