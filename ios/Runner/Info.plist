@@ -45,5 +45,21 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+		<string>processing</string>
+	</array>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Aplikasi membutuhkan akses kalender untuk menjadwalkan pengingat tugas</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Aplikasi membutuhkan akses pengingat untuk membuat notifikasi tugas</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	</array>
+	<key>NSUserNotificationUsageDescription</key>
+	<string>Aplikasi membutuhkan izin notifikasi untuk mengirimkan pengingat tugas</string>
 </dict>
 </plist>

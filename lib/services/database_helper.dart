@@ -19,9 +19,6 @@ class DatabaseHelper {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
 
-    await deleteDatabase(path);
-    debugPrint('Old database deleted');
-
     return await openDatabase(
       path,
       version: 1,
@@ -56,13 +53,16 @@ class DatabaseHelper {
   Future<void> insertTask(Task task) async {
     try {
       final db = await database;
-      await db.insert('tasks', {
-        'id': task.id,
-        'description': task.description,
-        'date': task.date.toIso8601String(),
-        'time': '${task.time.hour}:${task.time.minute}',
-        'isCompleted': task.isCompleted ? 1 : 0,
-      });
+      await db.insert(
+          'tasks',
+          {
+            'id': task.id,
+            'description': task.description,
+            'date': task.date.toIso8601String(),
+            'time': '${task.time.hour}:${task.time.minute}',
+            'isCompleted': task.isCompleted ? 1 : 0,
+          },
+          conflictAlgorithm: ConflictAlgorithm.replace);
       debugPrint('Task inserted successfully: ${task.id}');
     } catch (e) {
       debugPrint('Error inserting task: $e');
@@ -73,7 +73,10 @@ class DatabaseHelper {
   Future<List<Task>> getTasks() async {
     try {
       final db = await database;
-      final List<Map<String, dynamic>> maps = await db.query('tasks');
+      final List<Map<String, dynamic>> maps = await db.query(
+        'tasks',
+        orderBy: 'date ASC, time ASC',
+      );
       debugPrint('Retrieved ${maps.length} tasks from database');
 
       return List.generate(maps.length, (i) {

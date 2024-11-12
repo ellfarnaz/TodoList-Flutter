@@ -17,9 +17,23 @@ class NotificationService {
       const AndroidInitializationSettings initializationSettingsAndroid =
           AndroidInitializationSettings('@mipmap/ic_launcher');
 
+      // Konfigurasi untuk iOS
+      final DarwinInitializationSettings initializationSettingsIOS =
+          const DarwinInitializationSettings(
+        requestSoundPermission: true,
+        requestBadgePermission: true,
+        requestAlertPermission: true,
+        defaultPresentAlert: true,
+        defaultPresentSound: true,
+        defaultPresentBadge: true,
+      );
+
       // Konfigurasi untuk semua platform
-      const InitializationSettings initializationSettings =
-          InitializationSettings(android: initializationSettingsAndroid);
+      final InitializationSettings initializationSettings =
+          InitializationSettings(
+        android: initializationSettingsAndroid,
+        iOS: initializationSettingsIOS,
+      );
 
       // Initialize plugin
       await _flutterLocalNotificationsPlugin.initialize(
@@ -29,7 +43,7 @@ class NotificationService {
         },
       );
 
-      // Request permissions
+      // Request permissions untuk Android
       final platform = _flutterLocalNotificationsPlugin
           .resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>();
@@ -38,6 +52,23 @@ class NotificationService {
         debugPrint('Requesting Android notification permissions...');
         final granted = await platform.requestNotificationsPermission();
         debugPrint('Notification permission granted: $granted');
+      }
+
+      // Request permissions untuk iOS
+      final iOSPlatform = _flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              IOSFlutterLocalNotificationsPlugin>();
+
+      if (iOSPlatform != null) {
+        debugPrint('Requesting iOS notification permissions...');
+        final granted = await iOSPlatform.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+          critical: true,
+          provisional: false,
+        );
+        debugPrint('iOS notification permission granted: $granted');
       }
 
       debugPrint('Notification service initialized successfully');
@@ -59,8 +90,8 @@ class NotificationService {
       // Buat channel notification untuk Android
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
           AndroidNotificationDetails(
-        'todo_tasks', // channel id
-        'Task Reminders', // channel name
+        'todo_tasks',
+        'Task Reminders',
         channelDescription: 'Notifications for task reminders',
         importance: Importance.max,
         priority: Priority.high,
@@ -68,10 +99,25 @@ class NotificationService {
         enableLights: true,
         playSound: true,
         icon: '@mipmap/ic_launcher',
+        largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
+        styleInformation: BigTextStyleInformation(''),
       );
 
-      const NotificationDetails platformChannelSpecifics =
-          NotificationDetails(android: androidPlatformChannelSpecifics);
+      // Konfigurasi untuk iOS
+      const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+          DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+        sound: 'default',
+        badgeNumber: 1,
+        interruptionLevel: InterruptionLevel.timeSensitive,
+      );
+
+      const NotificationDetails platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics,
+      );
 
       // Convert to TZDateTime
       final tz.TZDateTime tzDateTime =
@@ -88,6 +134,16 @@ class NotificationService {
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
       );
+
+      // Tambahan untuk iOS: Tampilkan notifikasi langsung jika waktunya sudah dekat
+      if (scheduledDate.difference(DateTime.now()).inMinutes <= 1) {
+        await _flutterLocalNotificationsPlugin.show(
+          id,
+          title,
+          body,
+          platformChannelSpecifics,
+        );
+      }
 
       debugPrint('Notification scheduled successfully');
     } catch (e) {

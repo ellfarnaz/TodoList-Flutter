@@ -1,6 +1,6 @@
 # Flutter To-Do List App
 
-A simple yet powerful To-Do List application built with Flutter featuring dark/light themes and local notifications.
+A feature-rich To-Do List application built with Flutter, featuring elegant UI design, dark/light themes, and local notifications.
 
 <p float="left">
   <img src="https://i.imgur.com/auVPsVe.png" width="250" />
@@ -8,15 +8,16 @@ A simple yet powerful To-Do List application built with Flutter featuring dark/l
   <img src="https://i.imgur.com/kUg6FaE.png" width="250" />
 </p>
 
-## ✨ Features
+## ✨ Key Features
 
-- ✅ Task management (create, edit, delete)
-- 🌓 Dark and Light themes
-- 🔔 Reminder notifications
+- 📝 Complete task management (Create, Read, Update, Delete)
+- 🌓 Dynamic theme switching (Dark/Light mode)
+- 🔔 Smart local notifications
 - 📅 Date & time scheduling
-- 💾 Local storage with SQLite
-- 🎯 Task completion tracking
-- 🎨 Responsive UI with smooth animations
+- 💾 Persistent storage with SQLite
+- ✅ Task completion tracking
+- 🎨 Material Design UI with smooth animations
+- 📱 Responsive layout for all screen sizes
 
 ## 📱 Screenshots
 
@@ -32,94 +33,109 @@ A simple yet powerful To-Do List application built with Flutter featuring dark/l
   <img src="https://i.imgur.com/sbaEZEK.png" width="200" />
 </p>
 
-## 🛠️ Technologies Used
+## 🛠️ Technical Stack
 
-- Flutter
-- Provider (State Management)
-- SQLite (Local Database)
-- flutter_local_notifications
-- shared_preferences
-- Material Design
+- **Framework**: Flutter
+- **State Management**: Provider
+- **Database**: SQLite
+- **Local Notifications**: flutter_local_notifications
+- **Preferences**: shared_preferences
+- **UI Design**: Material Design 3
+- **Font**: Google Fonts (Roboto)
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Flutter SDK
+- Flutter SDK (latest version)
+- Dart SDK
 - Android Studio / VS Code
 - Git
 
-### Installation
+### Installation Steps
 
-1. Clone the repository
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/ellfarnaz/TodoList-Flutter.git
 ```
 
-2. Navigate to project directory
+2. Navigate to project directory:
 
 ```bash
 cd todo_list_app
 ```
 
-3. Install dependencies
+3. Install dependencies:
 
 ```bash
 flutter pub get
 ```
 
-4. Run the app
+4. Run the app:
 
 ```bash
 flutter run
 ```
 
-## 📁 Project Structure
+## 📁 Project Architecture
 
 ```
 lib/
-|-- main.dart
-|-- models/
-|   |-- task.dart
-|-- providers/
-|   |-- task_provider.dart
-|   |-- theme_provider.dart
-|-- screens/
-|   |-- home_screen.dart
-|   |-- add_task_screen.dart
-|   |-- edit_task_screen.dart
-|-- services/
-|   |-- notification_service.dart
-|-- utils/
-|   |-- color_palette.dart
-|   |-- theme_data.dart
-|-- widgets/
-|   |-- task_item.dart
+├── main.dart                 # App entry point
+├── models/                   # Data models
+│   └── task.dart            # Task model
+├── providers/               # State management
+│   ├── task_provider.dart   # Task state management
+│   └── theme_provider.dart  # Theme state management
+├── screens/                 # App screens
+│   ├── home_screen.dart     # Main screen
+│   ├── add_task_screen.dart # Add task screen
+│   └── edit_task_screen.dart# Edit task screen
+├── services/                # Core services
+│   ├── database_helper.dart # SQLite database service
+│   └── notification_service.dart # Local notifications
+├── utils/                   # Utilities
+│   ├── color_palette.dart   # Color definitions
+│   ├── theme_data.dart      # Theme configurations
+│   └── date_time_helper.dart# Date formatting
+└── widgets/                 # Reusable widgets
+    └── task_item.dart       # Task list item widget
 ```
 
-## 🎯 Upcoming Features
+## 🎯 Roadmap
 
+- [ ] Task categories and tags
 - [ ] Cloud synchronization
-- [ ] Task categories
-- [ ] Home screen widget
-- [ ] Data export/import
-- [ ] Productivity statistics
+- [ ] Home screen widgets
+- [ ] Data backup/restore
+- [ ] Task statistics and insights
+- [ ] Multiple reminder times
+- [ ] Recurring tasks
+- [ ] Task sharing
+- [ ] Custom themes
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome. Feel free to check issues page if you want to contribute.
-
 ## 👨‍💻 Author
 
-- **Farel Naufal Azhari** - _Developer_ - [GitHub Profile](https://github.com/ellfarnaz)
+**Farel Naufal Azhari**
+
+- GitHub: [@ellfarnaz](https://github.com/ellfarnaz)
+- LinkedIn: [Farel Naufal Azhari](https://linkedin.com/in/farel-naufal)
 
 ## 🙏 Acknowledgments
 
-- UI/UX Inspiration
-- Flutter Framework
-- Flutter Community
+- Thanks to the Flutter team for the amazing framework
+- Material Design for the beautiful UI guidelines
+- The Flutter community for inspiration and support
+
+## ⭐ Show your support
+
+Give a ⭐️ if this project helped you!
