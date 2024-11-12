@@ -18,8 +18,8 @@ class NotificationService {
           AndroidInitializationSettings('@mipmap/ic_launcher');
 
       // Konfigurasi untuk iOS
-      final DarwinInitializationSettings initializationSettingsIOS =
-          const DarwinInitializationSettings(
+      const DarwinInitializationSettings initializationSettingsIOS =
+          DarwinInitializationSettings(
         requestSoundPermission: true,
         requestBadgePermission: true,
         requestAlertPermission: true,
@@ -29,7 +29,7 @@ class NotificationService {
       );
 
       // Konfigurasi untuk semua platform
-      final InitializationSettings initializationSettings =
+      const InitializationSettings initializationSettings =
           InitializationSettings(
         android: initializationSettingsAndroid,
         iOS: initializationSettingsIOS,
